@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Board from "./components/Board";
 import HistoryOfGame from "./components/HistoryOfGame";
-import StatusOfGame, { calculateWinner } from "./components/StautsOfGame"; // FIXME: вот что-то я сильно не уверен, что это хорошая практика экспортировать просто функцию из другого элемента 
+import StatusOfGame from "./components/StautsOfGame"; // FIXME: вот что-то я сильно не уверен, что это хорошая практика экспортировать просто функцию из другого элемента 
+import { aiMove } from "./utils/aiMove";
+import { calculateWinner } from "./utils/calculateWinner";
 
 export default function Game(props) {
     const [history, setHistory] = useState([{ squares: Array(9).fill(null) }]);
@@ -15,7 +17,7 @@ export default function Game(props) {
             return;
         }
         squares[i] = xIsNext ? "X" : "O";
-        if (!props.isHuman) {
+        if (!props.isHuman && !calculateWinner(squares)) {
             squares = aiMove(squares); //включается тупейший ИИ
         } else {
             setXisNext(!xIsNext);
@@ -31,16 +33,7 @@ export default function Game(props) {
         setHistory(history.slice(0, step + 1));
     }
 
-    function aiMove(squares) { // сам тупейший ИИ FIXME: вот как его правильно вынести в дгругой файл? и работа с null ещё
-        console.log("Ai move")
-        for (var i = 0; i < 9; i++) {
-            if (!squares[i]) {
-                squares[i] = "O";
-                break;
-            }
-        }
-        return squares;
-    }
+
 
     return (
         <div className="game">

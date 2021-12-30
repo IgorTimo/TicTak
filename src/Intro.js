@@ -9,7 +9,7 @@ export default function Intro(){
 
     function handelSubmit(e){
         e.preventDefault();
-        render(<Game isHistory = {isHistory} isHuman = {isHuman}/>, document.getElementById('root')); // FIXME: почему не перерендер
+        render(<Game isHistory = {isHistory} isHuman = {isHuman}/>, document.getElementById('root')); // FIXME: redux
     }
 
     return(<form onSubmit={handelSubmit}>
