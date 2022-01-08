@@ -1,9 +1,10 @@
 import Square from "./Square";
 
 export default function Board(props) {
+    // isWinerSquare = {props.winIndexes.include(i)}
 
     function renderSquare(i) {
-        return <Square value={props.squares[i]} key={i} onClick={() => props.onSquareClick(i)} />;
+        return <Square value={props.squares[i]} key={i} isWinnerSquare = {props.winIndexes.includes(i)}  onClick={() => props.onSquareClick(i)} />;
     }
 
     function renderLine(start, end) {

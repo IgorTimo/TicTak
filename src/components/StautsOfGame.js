@@ -1,11 +1,12 @@
 import { calculateWinner } from "../utils/calculateWinner";
 
 export default function StatusOfGame(props){
-    const winner = calculateWinner(props.history[props.stepNumber].squares);
+    const current = props.history[props.stepNumber].squares
+    const winner = calculateWinner(current);
 
         let status;
         if (winner) {
-            status = `Win ${winner}`
+            status = `Win ${current[winner[0]]}`
         } else if(props.history.length === 10) {
             status = "Draw"
         } else{
