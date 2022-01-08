@@ -26,7 +26,7 @@ export default function Game(props) {
     }
     setHistory(history.concat({ squares }));
     setStepNumber(history.length);
-    setWinIndexes(calculateWinner(squares)|| []);
+    setWinIndexes(calculateWinner(squares) || []);
   }
 
   function handelHistoryChangeClick(step) {
@@ -37,14 +37,14 @@ export default function Game(props) {
 
   return (
     <GameDiv>
-      <div className="game-board">
+      <BoardDiv>
         <Board
           squares={history[stepNumber].squares}
           winIndexes={winIndexes}
           onSquareClick={handelSquareClick}
         />
-      </div>
-      <GameInfoDiv className="game-info">
+      </BoardDiv>
+      <GameInfoDiv>
         <StatusOfGame
           history={history}
           xIsNext={xIsNext}
@@ -66,8 +66,23 @@ export default function Game(props) {
 const GameDiv = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 
 const GameInfoDiv = styled.div`
   margin-left: 30px;
+  @media screen and (max-width: 450px) {
+    margin: 0;
+  }
+`;
+
+const BoardDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  &:first-child {
+    margin: 10px 0;
+  }
 `;
