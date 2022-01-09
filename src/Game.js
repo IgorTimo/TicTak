@@ -80,6 +80,7 @@ const GameInfoDiv = styled.div`
 `;
 
 const BoardDiv = styled.div`
+min-width: 200px;
   display: flex;
   flex-direction: row;
   &:first-child {
